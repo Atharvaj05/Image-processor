@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const API_URL = 'http://127.0.0.1:5000';
+const API_URL = 'https://image-processor-backend-4yvm.onrender.com';
 
 function App() {
   const [token,       setToken]       = useState(localStorage.getItem('token'));
