@@ -1,0 +1,7 @@
+node_modules
+npm-debug.log
+.env
+dist
+transformed/*
+uploads/*
+frontend/node_modules

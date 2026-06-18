@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: image_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  backend:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - DATABASE_URL=postgresql://postgres:password@db:5432/image_db?schema=public
+      - JWT_SECRET=supersecret_docker_key
+    depends_on:
+      - db
+    volumes:
+      - ./uploads:/app/uploads
+      - ./transformed:/app/transformed
+
+volumes:
+  pgdata:
